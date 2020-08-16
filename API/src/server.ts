@@ -9,6 +9,9 @@ const blipp = require('blipp');
 import { glueManifest } from './config/glueManifest';
 import { config } from './config/config';
 
+// API
+import * as Users from './api/users';
+
 const validate = (credentials: object, req: ResponseObject, h: ResponseToolkit) => {
   return {
     isValid: true,
@@ -45,6 +48,9 @@ export async function init(database: IDatabase<any>): Promise<Server> {
     console.log('All plugins registered successfully.');
 
     console.log('Register Routes');
+
+    // INIT COMPONENT
+    Users.init(server);
 
     console.log('Routes registered sucessfully.');
     return server;
