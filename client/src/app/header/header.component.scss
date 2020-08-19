@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background-image: url("../../assets/logo_blue.png");
+  background-size: cover;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.avatar {
+  border-radius: 100%;
+  background-size: cover;
+}
