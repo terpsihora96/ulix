@@ -1,8 +1,12 @@
 <div class="container">
-  <div *ngIf="isAuthenticated; else elseBlock">
+  <div class="auth-container" *ngIf="isAuthenticated; else elseBlock">
     <div class="logo"></div>
-    <div class="avatar">Tijana</div>
+    <div class="avatar" mat-button [matMenuTriggerFor]="menu">Tijana</div>
   </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item id="preferences">Preferences</button>
+    <button mat-menu-item id="sign-out">Sign out</button>
+  </mat-menu>
   <ng-template #elseBlock>
     <div class="logo"></div>
   </ng-template>
