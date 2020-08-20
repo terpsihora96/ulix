@@ -7,14 +7,14 @@
           <mat-label>First Name</mat-label>
           <input matInput [formControl]="firstNameFormControl" />
           <mat-error *ngIf="firstNameFormControl.hasError('required')">
-            Please enter your last name
+            Please enter your first name
           </mat-error>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
           <mat-label>Last Name</mat-label>
           <input matInput [formControl]="lastNameFormControl" />
           <mat-error *ngIf="lastNameFormControl.hasError('required')">
-            Please enter your first name
+            Please enter your last name
           </mat-error>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
