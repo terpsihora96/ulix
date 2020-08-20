@@ -1,4 +1,9 @@
 <div class="container">
-  <div class="logo"></div>
-  <div class="avatar">Tijana</div>
+  <div *ngIf="isAuthenticated; else elseBlock">
+    <div class="logo"></div>
+    <div class="avatar">Tijana</div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="logo"></div>
+  </ng-template>
 </div>

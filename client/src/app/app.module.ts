@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,9 +36,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -70,6 +78,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
