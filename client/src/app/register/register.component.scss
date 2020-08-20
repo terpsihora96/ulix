@@ -1,0 +1,33 @@
+.container {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-card {
+  max-width: 40%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.register-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.register-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-login {
+  text-decoration: none;
+}

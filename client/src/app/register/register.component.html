@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-card class="register-card">
+    <mat-card-title class="register-card-title"> Sign up </mat-card-title>
+    <mat-card-content>
+      <form class="register-form">
+        <mat-form-field style="width: 100%;">
+          <mat-label>First Name</mat-label>
+          <input matInput [formControl]="firstNameFormControl" />
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">
+            Please enter your last name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Last Name</mat-label>
+          <input matInput [formControl]="lastNameFormControl" />
+          <mat-error *ngIf="lastNameFormControl.hasError('required')">
+            Please enter your first name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            [formControl]="emailFormControl"
+            placeholder="hello@ulix.com"
+          />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Please enter your email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [formControl]="passwordFormControl" />
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Please enter your password
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput type="password" [formControl]="passwordFormControl" />
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Please confirm your password
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="register-buttons">
+      <button mat-button>Sign up</button>
+      <a class="register-login" href="/">Already have an account? Login! </a>
+    </mat-card-actions>
+  </mat-card>
+</div>
