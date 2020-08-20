@@ -37,6 +37,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     MainComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
