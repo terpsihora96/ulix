@@ -12,6 +12,7 @@ import { config } from './config/config';
 // API
 import * as Users from './api/users';
 import * as Topics from './api/topics';
+import * as Categories from './api/categories';
 
 const validate = (credentials: object, req: ResponseObject, h: ResponseToolkit) => {
   return {
@@ -53,6 +54,7 @@ export async function init(database: IDatabase<any>): Promise<Server> {
     // INIT COMPONENT
     Users.init(server);
     Topics.init(server);
+    Categories.init(server);
 
     console.log('Routes registered sucessfully.');
     return server;

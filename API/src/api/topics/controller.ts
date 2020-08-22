@@ -37,7 +37,7 @@ export class TopicController {
     try {
       const payload = request.payload as any;
       const topicId = await request.db().one(
-        `INSERT INTO Topics (category_id, note, name) 
+        `INSERT INTO topics (category_id, note, name) 
           VALUES ($<category_id>, $<note>, $<name>)
           RETURNING id`,
         { ...payload }
@@ -52,7 +52,7 @@ export class TopicController {
   async updateTopic(request: RequestExt, h: ResponseToolkit): Promise<ResponseObject | Boom> {
     try {
       const topicId = await request.db().oneOrNone(
-        `UPDATE Topics 
+        `UPDATE topics 
           SET category_id = $<category_id>, note = $<note>, name = $<name> WHERE id = $<topicId> RETURNING id`,
         {
           ...(request.payload as {}),
