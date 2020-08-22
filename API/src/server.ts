@@ -11,6 +11,7 @@ import { config } from './config/config';
 
 // API
 import * as Users from './api/users';
+import * as Topics from './api/topics';
 
 const validate = (credentials: object, req: ResponseObject, h: ResponseToolkit) => {
   return {
@@ -51,6 +52,7 @@ export async function init(database: IDatabase<any>): Promise<Server> {
 
     // INIT COMPONENT
     Users.init(server);
+    Topics.init(server);
 
     console.log('Routes registered sucessfully.');
     return server;
