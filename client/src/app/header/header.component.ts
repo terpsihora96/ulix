@@ -7,7 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public isAuthenticated = false;
+  public isAuthenticated = true;
 
   constructor() {}
 

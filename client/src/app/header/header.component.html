@@ -4,8 +4,10 @@
     <div class="avatar" mat-button [matMenuTriggerFor]="menu">Tijana</div>
   </div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item id="preferences">Preferences</button>
-    <button mat-menu-item id="sign-out">Sign out</button>
+    <button mat-menu-item id="account-link" [routerLink]="['/account']">
+      My Account
+    </button>
+    <button mat-menu-item id="sign-out-link">Sign out</button>
   </mat-menu>
   <ng-template #elseBlock>
     <div class="logo" style="position: absolute;"></div>

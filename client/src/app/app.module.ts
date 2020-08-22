@@ -26,6 +26,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -61,6 +62,7 @@ import { RegisterComponent } from './register/register.component';
     MatSliderModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
