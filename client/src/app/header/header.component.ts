@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,13 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public isAuthenticated = true;
+  constructor(public auth: AuthService) {}
 
-  constructor() {}
+  public isAuthenticated = this.auth.getAccessToken();
+
+  logout(): void {
+    this.auth.logout();
+  }
 
   ngOnInit(): void {}
 }

@@ -7,12 +7,14 @@
     <button mat-menu-item id="account-link" [routerLink]="['/account']">
       My Account
     </button>
-    <button mat-menu-item id="sign-out-link">Sign out</button>
+    <button mat-menu-item id="sign-out-link" (click)="logout()">
+      Sign out
+    </button>
   </mat-menu>
   <ng-template #elseBlock>
     <div
       class="logo animate__animated animate__flip"
-      style="position: absolute;"
+      style="position: absolute; z-index: 10"
     ></div>
   </ng-template>
 </div>
