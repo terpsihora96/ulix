@@ -41,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AccountComponent } from './account/account.component';
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
