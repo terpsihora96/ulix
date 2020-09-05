@@ -7,14 +7,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   categories = [
-    { title: '1', topics: [{ title: 'topic1' }] },
-    { title: '2', topics: [{ title: 'topic2' }] },
-    { title: '2', topics: [{ title: 'topic2' }] },
-    { title: '2', topics: [{ title: 'topic2' }] },
-    { title: '2', topics: [{ title: 'topic2' }] },
-    { title: '2', topics: [{ title: 'topic2' }] },
+    {
+      name: 'Movies',
+      topics: [
+        {
+          name: 'All About Eve',
+          note:
+            'hsfkhfshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
+        },
+      ],
+    },
+    {
+      name: 'My notes',
+      topics: [
+        {
+          name: 'topic2',
+          note:
+            'hsfkhfshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
+        },
+        {
+          name: 'topic2',
+          note:
+            'hsfkh3565273256732763275327fshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
+        },
+        {
+          name: 'topic2',
+          note: 'h35617',
+        },
+        {
+          name: 'topic2',
+          note: 'HSFKHFDKJHFDSKJHFKDJSHJDFSK;ljsfljlfsljsflsfhslsfjk',
+        },
+      ],
+    },
   ];
   panelOpenState = false;
+  note: string;
+  title: string;
 
   constructor() {}
 
