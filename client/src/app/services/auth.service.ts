@@ -33,6 +33,7 @@ export class AuthService {
           return of(false);
         })
       );
+    this.location.go('/');
 
     return observable.toPromise();
   }
@@ -41,8 +42,8 @@ export class AuthService {
     this.accessToken = undefined;
     this.refreshToken = undefined;
     localStorage.clear();
+    this.location.go('/login');
     location.reload();
-    this.location.go('/');
   }
 
   private saveToken(accessToken: string, refreshToken: string): void {
