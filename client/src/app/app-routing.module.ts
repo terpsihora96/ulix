@@ -4,11 +4,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MainComponent } from './main/main.component';
+import { AuthGuard } from './services/guards/auth-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: MainComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
