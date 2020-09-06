@@ -11,6 +11,9 @@
               {{ topic.name }}
             </p>
           </div>
+          <button mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
         </mat-expansion-panel>
         <mat-expansion-panel
           (opened)="panelOpenState = true"
@@ -18,6 +21,11 @@
         >
         </mat-expansion-panel>
       </div>
+      <mat-accordion id="global-add">
+        <button mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-accordion>
     </mat-accordion>
   </div>
   <div class="main">
