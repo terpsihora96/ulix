@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../services/categories/category.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -43,8 +45,34 @@ export class MainComponent implements OnInit {
   panelOpenState = false;
   note: string;
   title: string;
+  category: any;
 
-  constructor() {}
+  constructor(private categoryService: CategoryService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.category = this.categoryService
+      .getCategory(2)
+      .subscribe((category) => console.log(category));
+  }
+
+  // TODO
+  addNewCategory(): void {
+    this.categoryService
+      .createCategory({
+        favorite: true,
+        note: 'shfkshfk',
+        name: 'shfkshfk',
+      })
+      .subscribe((category) => console.log(category));
+  }
+  // TODO
+  addNewTopic(): void {
+    this.categoryService
+      .createCategory({
+        favorite: true,
+        note: 'shfkshfk',
+        name: 'shfkshfk',
+      })
+      .subscribe((category) => console.log(category));
+  }
 }

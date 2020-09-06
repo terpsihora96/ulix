@@ -11,7 +11,7 @@
               {{ topic.name }}
             </p>
           </div>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="addNewTopic()">
             <mat-icon>add</mat-icon>
           </button>
         </mat-expansion-panel>
@@ -22,7 +22,7 @@
         </mat-expansion-panel>
       </div>
       <mat-accordion id="global-add">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="addNewCategory()">
           <mat-icon>add</mat-icon>
         </button>
       </mat-accordion>
