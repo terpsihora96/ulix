@@ -82,11 +82,44 @@ export class UserService {
             return false;
           }
         }),
-        retry(3),
         catchError(() => {
           return of(false);
         })
       );
     return observable.toPromise();
+  }
+
+  public register(
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string,
+    confirmPassword: string
+  ): Promise<boolean> {
+    if (password === confirmPassword) {
+      const payload = {
+        email,
+        firstName,
+        lastName,
+        password: btoa(password),
+      };
+      const observable = this.http
+        .post(`${this.apiUrl}/users`, payload, {
+          observe: 'response',
+        })
+        .pipe(
+          map((response: any) => {
+            if (response.ok) {
+              return true;
+            } else {
+              return false;
+            }
+          }),
+          catchError(() => {
+            return of(false);
+          })
+        );
+      return observable.toPromise();
+    }
   }
 }
