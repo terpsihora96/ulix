@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class HeaderComponent implements OnInit {
   constructor(public auth: AuthService) {}
 
-  public isAuthenticated = this.auth.getAccessToken();
+  public isAuthenticated = this.auth.accessTokenExists();
 
   logout(): void {
     this.auth.logout();

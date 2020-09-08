@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/categories/category.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -47,7 +48,10 @@ export class MainComponent implements OnInit {
   title: string;
   category: any;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.category = this.categoryService
@@ -57,22 +61,19 @@ export class MainComponent implements OnInit {
 
   // TODO
   addNewCategory(): void {
-    this.categoryService
-      .createCategory({
-        favorite: true,
-        note: 'shfkshfk',
-        name: 'shfkshfk',
-      })
-      .subscribe((category) => console.log(category));
+    console.log(this.auth.getAccessToken());
+    this.categoryService.createCategory({
+      favorite: true,
+      note: 'shfkshfk',
+      name: 'shfkshfk',
+    });
   }
   // TODO
   addNewTopic(): void {
-    this.categoryService
-      .createCategory({
-        favorite: true,
-        note: 'shfkshfk',
-        name: 'shfkshfk',
-      })
-      .subscribe((category) => console.log(category));
+    this.categoryService.createCategory({
+      favorite: true,
+      note: 'shfkshfk',
+      name: 'shfkshfk',
+    });
   }
 }
