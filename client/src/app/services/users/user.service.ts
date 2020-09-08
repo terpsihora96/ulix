@@ -59,4 +59,34 @@ export class UserService {
 
     return observable.toPromise();
   }
+
+  public updatePassword(
+    email: string,
+    oldPassword: string,
+    newPassword: string
+  ): Promise<boolean> {
+    const payload = {
+      email,
+      password: btoa(oldPassword),
+      new_password: btoa(newPassword),
+    };
+    const observable = this.http
+      .post(`${this.apiUrl}/users/update-password`, payload, {
+        observe: 'response',
+      })
+      .pipe(
+        map((response: any) => {
+          if (response.ok) {
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        retry(3),
+        catchError(() => {
+          return of(false);
+        })
+      );
+    return observable.toPromise();
+  }
 }
