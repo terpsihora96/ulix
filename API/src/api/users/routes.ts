@@ -70,12 +70,18 @@ export const userRoutes = (server: Server) => {
         payload: {
           parse: true,
         },
-        response: { emptyStatusCode: 204 },
         validate: {
           params: Joi.object().keys({
             userId: Joi.number().integer().required(),
           }),
           payload: models.putUserSchema,
+        },
+        response: {
+          status: {
+            200: Joi.object().keys({
+              access_token: Joi.string(),
+            }),
+          },
         },
       },
     },

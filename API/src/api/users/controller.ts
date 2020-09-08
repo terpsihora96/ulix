@@ -61,14 +61,22 @@ export class UserController {
     }
   }
 
-  async updateUser(request: RequestExt, h: ResponseToolkit): Promise<ResponseObject | Boom> {
+  async updateUser(
+    request: RequestExt,
+    h: ResponseToolkit
+  ): Promise<{ access_token: string } | Boom> {
     try {
+      const payload = request.payload as {
+        firstname: string;
+        lastname: string;
+        light_mode: boolean;
+      };
       const user = await request.db().oneOrNone(
         `UPDATE users 
           SET firstname = $<firstname>, lastname = $<lastname>, light_mode = $<light_mode>, last_update = $<last_update>
-          WHERE id = $<userId> RETURNING id`,
+          WHERE id = $<userId> RETURNING email`,
         {
-          ...(request.payload as {}),
+          ...payload,
           userId: request.params.userId,
           last_update: moment().toISOString(),
         }
@@ -76,7 +84,14 @@ export class UserController {
       if (user === null) {
         return request.notFound();
       }
-      return h.response();
+      const tokenPayload = {
+        firstname: payload.firstname,
+        lastname: payload.lastname,
+        email: user.email,
+        id: request.params.userId,
+      };
+      const token = await createJWT(tokenPayload);
+      return { access_token: token };
     } catch (err) {
       console.error(err);
       return request.internal();
