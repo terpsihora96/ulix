@@ -45,6 +45,7 @@ import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './services/guards/auth-guard.guard';
+import { LoggedinGuard } from './services/guards/loggedin.guard';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { AuthGuard } from './services/guards/auth-guard.guard';
   ],
   providers: [
     AuthGuard,
+    LoggedinGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

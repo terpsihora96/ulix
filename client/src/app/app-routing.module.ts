@@ -6,6 +6,7 @@ import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './services/guards/auth-guard.guard';
+import { LoggedinGuard } from './services/guards/loggedin.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoggedinGuard],
   },
   {
     path: 'register',
