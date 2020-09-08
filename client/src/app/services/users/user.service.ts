@@ -76,9 +76,11 @@ export class UserService {
       })
       .pipe(
         map((response: any) => {
+          console.log(response);
           if (response.ok) {
             return true;
           } else {
+            this.auth.logout();
             return false;
           }
         }),
@@ -124,5 +126,37 @@ export class UserService {
         );
       return observable.toPromise();
     }
+  }
+
+  public updateUserData(firstName: string, lastName: string): Promise<boolean> {
+    const payload = {
+      firstname: firstName,
+      lastname: lastName,
+      light_mode: true,
+    };
+    const observable = this.http
+      .put(`${this.apiUrl}/users/${this.getUserId()}`, payload, {
+        observe: 'response',
+      })
+      .pipe(
+        map((response: any) => {
+          if (response.ok) {
+            const body = response.body as { access_token: string };
+            this.auth.saveTokens(
+              body.access_token,
+              this.auth.getRefreshToken()
+            );
+            this.auth.saveUser(body.access_token);
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        catchError(() => {
+          return of(false);
+        })
+      );
+    location.reload();
+    return observable.toPromise();
   }
 }

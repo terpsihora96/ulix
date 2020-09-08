@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
+import { UserService } from '../services/users/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public auth: AuthService) {}
+  public isAuthenticated: boolean;
+  private firstName: string = null;
 
-  public isAuthenticated = this.auth.accessTokenExists();
+  constructor(public auth: AuthService, public user: UserService) {
+    this.isAuthenticated = this.auth.accessTokenExists();
+    if (this.isAuthenticated) {
+      this.firstName = this.user.getFirstName();
+    }
+  }
 
   logout(): void {
     this.auth.logout();

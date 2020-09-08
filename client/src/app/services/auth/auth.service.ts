@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, retry } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import * as moment from 'moment';
 import { Tokens, TokenData } from './types';
-import { UserService } from '../users/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -86,7 +85,7 @@ export class AuthService {
     return localStorage.getItem('access-token');
   }
 
-  private getRefreshToken(): string {
+  public getRefreshToken(): string {
     return localStorage.getItem('refresh-token');
   }
 }

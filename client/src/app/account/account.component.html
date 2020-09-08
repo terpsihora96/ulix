@@ -7,29 +7,48 @@
         <mat-tab label="Update password">
           <div class="tab">
             <mat-form-field>
+              <mat-label>Current password</mat-label>
+              <input
+                matInput
+                type="password"
+                [formControl]="passwordFormControl"
+                [(ngModel)]="currentPassword"
+              />
+              <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Please enter your current password
+              </mat-error> </mat-form-field
+            ><mat-form-field>
               <mat-label>New password</mat-label>
               <input
                 matInput
                 type="password"
                 [formControl]="passwordFormControl"
+                [(ngModel)]="newPassword"
               />
               <mat-error *ngIf="passwordFormControl.hasError('required')">
-                Please enter your password
+                Please enter your new password
               </mat-error>
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Confirm your password</mat-label>
+              <mat-label>Confirm your new password</mat-label>
               <input
                 matInput
                 type="password"
                 [formControl]="passwordFormControl"
+                [(ngModel)]="confirmNewPassword"
               />
               <mat-error *ngIf="passwordFormControl.hasError('required')">
                 Please confirm your password
               </mat-error>
             </mat-form-field>
             <mat-card-actions class="account-buttons">
-              <button mat-button id="account-update-button">Update</button>
+              <button
+                mat-button
+                id="account-update-button"
+                (click)="updatePassword()"
+              >
+                Update
+              </button>
               <button mat-button id="account-back-button" (click)="goBack()">
                 Back
               </button>
@@ -44,8 +63,10 @@
                 <mat-label>First Name</mat-label>
                 <input
                   value="{{ firstName }}"
+                  placeholder="{{ firstName }}"
                   matInput
                   [formControl]="firstNameFormControl"
+                  [(ngModel)]="firstName"
                 />
                 <mat-error *ngIf="firstNameFormControl.hasError('required')">
                   Please enter your first name
@@ -53,14 +74,26 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Last Name</mat-label>
-                <input matInput [formControl]="lastNameFormControl" />
+                <input
+                  value="{{ lastName }}"
+                  placeholder="{{ lastName }}"
+                  matInput
+                  [formControl]="lastNameFormControl"
+                  [(ngModel)]="lastName"
+                />
                 <mat-error *ngIf="lastNameFormControl.hasError('required')">
                   Please enter your last name
                 </mat-error>
               </mat-form-field>
             </form>
             <mat-card-actions class="account-buttons">
-              <button mat-button id="account-update-button">Update</button>
+              <button
+                mat-button
+                id="account-update-button"
+                (click)="updateUserData()"
+              >
+                Update
+              </button>
               <button mat-button id="account-back-button" (click)="goBack()">
                 Back
               </button>

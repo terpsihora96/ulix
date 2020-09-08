@@ -1,7 +1,9 @@
 <div class="container">
   <div class="auth-container" *ngIf="isAuthenticated; else elseBlock">
     <div class="logo animate__animated animate__flip"></div>
-    <div class="avatar" mat-button [matMenuTriggerFor]="menu">Tijana</div>
+    <div class="avatar" mat-button [matMenuTriggerFor]="menu">
+      {{ firstName }}
+    </div>
   </div>
   <mat-menu #menu="matMenu">
     <button mat-menu-item id="account-link" [routerLink]="['/account']">
