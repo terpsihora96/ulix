@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, retry } from 'rxjs/operators';
+import { catchError, map, retry, last } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
@@ -99,8 +99,8 @@ export class UserService {
     if (password === confirmPassword) {
       const payload = {
         email,
-        firstName,
-        lastName,
+        firstname: firstName,
+        lastname: lastName,
         password: btoa(password),
       };
       const observable = this.http
@@ -110,8 +110,11 @@ export class UserService {
         .pipe(
           map((response: any) => {
             if (response.ok) {
+              this.location.go('/login');
+              location.reload();
               return true;
             } else {
+              location.reload();
               return false;
             }
           }),

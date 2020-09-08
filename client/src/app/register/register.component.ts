@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { UserService } from '../services/users/user.service';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,13 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+
+  constructor(private user: UserService) {}
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -18,4 +25,14 @@ export class RegisterComponent implements OnInit {
   lastNameFormControl = new FormControl('', [Validators.required]);
 
   ngOnInit(): void {}
+
+  public register(): void {
+    this.user.register(
+      this.email,
+      this.firstName,
+      this.lastName,
+      this.password,
+      this.confirmPassword
+    );
+  }
 }
