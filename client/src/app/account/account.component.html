@@ -102,10 +102,20 @@
         </mat-tab>
         <mat-tab label="Danger Zone">
           <div class="tab">
-            <button mat-button color="warn" id="account-delete-button">
+            <button
+              mat-button
+              color="warn"
+              id="account-delete-button"
+              (click)="deleteAllData()"
+            >
               Delete all my data
             </button>
-            <button mat-button color="warn" id="account-delete-all-button">
+            <button
+              mat-button
+              color="warn"
+              id="account-delete-all-button"
+              (click)="deleteAccount()"
+            >
               Delete all my data & my account
             </button>
             <mat-card-actions class="account-buttons">

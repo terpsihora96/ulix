@@ -36,6 +36,21 @@ export class CategoryController {
     }
   }
 
+  async deleteAllCategories(
+    request: RequestExt,
+    h: ResponseToolkit
+  ): Promise<ResponseObject | Boom> {
+    try {
+      await request
+        .db()
+        .query(`DELETE FROM categories WHERE user_id = $1 RETURNING id`, [request.params.userId]);
+      return h.response().code(204);
+    } catch (err) {
+      console.error(err);
+      return request.internal();
+    }
+  }
+
   async addCategory(request: RequestExt, h: ResponseToolkit): Promise<ResponseObject | Boom> {
     try {
       const payload = request.payload as any;

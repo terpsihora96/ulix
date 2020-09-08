@@ -44,6 +44,21 @@ export const categoryRoutes = (server: Server) => {
       },
     },
     {
+      method: 'DELETE',
+      path: '/categories/users/{userId}',
+      options: {
+        handler: categoryController.deleteAllCategories,
+        tags: ['api', 'categories'],
+        description: 'Delete all user categories.',
+        validate: {
+          params: Joi.object().keys({
+            userId: Joi.number().integer(),
+          }),
+        },
+        response: { emptyStatusCode: 204 },
+      },
+    },
+    {
       method: 'POST',
       path: '/categories',
       options: {

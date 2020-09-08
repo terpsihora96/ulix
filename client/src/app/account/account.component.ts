@@ -52,4 +52,12 @@ export class AccountComponent implements OnInit {
       );
     }
   }
+
+  deleteAccount(): void {
+    this.user.deleteUser();
+  }
+
+  deleteAllData(): void {
+    this.user.deleteAllData();
+  }
 }

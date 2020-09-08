@@ -4,6 +4,7 @@ import { catchError, map, retry, last } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
+import { ConstantPool } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -158,5 +159,22 @@ export class UserService {
       );
     location.reload();
     return observable.toPromise();
+  }
+
+  public deleteUser(): void {
+    this.http
+      .delete(`${this.apiUrl}/users/${this.getUserId()}`, {
+        observe: 'response',
+      })
+      .subscribe();
+    this.auth.logout();
+  }
+
+  public deleteAllData(): void {
+    this.http
+      .delete(`${this.apiUrl}/categories/users/${this.getUserId()}`, {
+        observe: 'response',
+      })
+      .subscribe();
   }
 }
