@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../users/user.service';
+import { map } from 'rxjs/operators';
 
 export interface Category {
   id?: number;
@@ -15,12 +17,14 @@ export interface Category {
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient, public user: UserService) {}
 
   private readonly categoriesUrl = 'http://localhost:8080/categories';
 
-  public getCategories(): Observable<Category[] | null> {
-    return this.http.get<Category[]>(this.categoriesUrl);
+  public getCategories(): Observable<any> {
+    return this.http.get(
+      `${this.categoriesUrl}/users/${this.user.getUserId()}`
+    );
   }
 
   public getCategory(id: number): Observable<Category> {
@@ -28,7 +32,18 @@ export class CategoryService {
   }
 
   public createCategory(data: Category): Observable<{ id: number }> {
-    return this.http.post<{ id: number }>(this.categoriesUrl, data);
+    return this.http
+      .post<{ id: number }>(this.categoriesUrl, data, {
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          if (response.ok) {
+            return response.body;
+          }
+          return null;
+        })
+      );
   }
 
   public deleteCategory(id: number): Observable<{ id: number }> {

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, retry, last } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
-import { ConstantPool } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',

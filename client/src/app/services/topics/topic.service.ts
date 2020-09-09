@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 export interface Topic {
   id?: number;
-  topic_id?: number;
+  category_id?: number;
   created_at?: string;
   last_update?: string;
   note: string;
   name: string;
+  favorite: boolean;
 }
 
 @Injectable({
@@ -28,7 +30,18 @@ export class TopicService {
   }
 
   public createTopic(data: Topic): Observable<{ id: number }> {
-    return this.http.post<{ id: number }>(this.topicsUrl, data);
+    return this.http
+      .post<{ id: number }>(this.topicsUrl, data, {
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          if (response.ok) {
+            return response.body;
+          }
+          return null;
+        })
+      );
   }
 
   public deleteTopic(id: number): Observable<{ id: number }> {
