@@ -22,6 +22,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [LoggedinGuard],
   },
   { path: 'account', component: AccountComponent },
   { path: '**', component: NotFoundComponent },
