@@ -165,8 +165,11 @@ export class UserService {
       .delete(`${this.apiUrl}/users/${this.getUserId()}`, {
         observe: 'response',
       })
-      .subscribe();
-    this.auth.logout();
+      .subscribe((res) => {
+        if (res.ok) {
+          this.auth.logout();
+        }
+      });
   }
 
   public deleteAllData(): void {
