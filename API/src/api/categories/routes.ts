@@ -10,6 +10,20 @@ export const categoryRoutes = (server: Server) => {
   server.route([
     {
       method: 'GET',
+      path: '/categories/users/{userId}',
+      options: {
+        handler: categoryController.getCategories,
+        tags: ['api', 'categories'],
+        description: 'Get all categories for a given user.',
+        validate: {
+          params: Joi.object().keys({
+            userId: Joi.number().integer(),
+          }),
+        },
+      },
+    },
+    {
+      method: 'GET',
       path: '/categories/{categoryId}',
       options: {
         handler: categoryController.getCategory,

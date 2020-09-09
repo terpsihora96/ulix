@@ -7,6 +7,22 @@ import * as moment from 'moment-timezone';
 export class CategoryController {
   constructor() {}
 
+  async getCategories(request: RequestExt, h: ResponseToolkit): Promise<types.Category[] | Boom> {
+    try {
+      return request.db().query(
+        `SELECT categories.id, categories.favorite, categories.note, categories.name, 
+          ARRAY_AGG(JSON_BUILD_OBJECT('id', topics.id, 'category_id', categories.id, 'name', topics.name, 'note', topics.note)) as topics
+          FROM categories LEFT JOIN topics ON categories.id = topics.category_id
+          WHERE categories.user_id = $1
+          GROUP BY categories.id`,
+        request.params.userId
+      );
+    } catch (err) {
+      console.error(err);
+      return request.internal();
+    }
+  }
+
   async getCategory(request: RequestExt, h: ResponseToolkit): Promise<types.Category | Boom> {
     try {
       const query = await request
