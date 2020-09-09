@@ -3,8 +3,10 @@
     <mat-accordion>
       <div *ngFor="let category of categories">
         <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title> {{ category.name }} </mat-panel-title>
+          <mat-expansion-panel-header (click)="categoryId = category.id">
+            <mat-panel-title>
+              {{ category.name }}
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="topics" *ngFor="let topic of category.topics">
             <p (click)="title = topic.name; note = topic.note">

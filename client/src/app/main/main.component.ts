@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/categories/category.service';
-import { AuthService } from '../services/auth/auth.service';
+import { TopicService } from '../services/topics/topic.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -8,72 +10,66 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  categories = [
-    {
-      name: 'Movies',
-      topics: [
-        {
-          name: 'All About Eve',
-          note:
-            'hsfkhfshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
-        },
-      ],
-    },
-    {
-      name: 'My notes',
-      topics: [
-        {
-          name: 'topic2',
-          note:
-            'hsfkhfshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
-        },
-        {
-          name: 'topic2',
-          note:
-            'hsfkh3565273256732763275327fshjfsljsflijlsfkjjslfhlksjfljfsljfs;ljsfljlfsljsflsfhslsfjk',
-        },
-        {
-          name: 'topic2',
-          note: 'h35617',
-        },
-        {
-          name: 'topic2',
-          note: 'HSFKHFDKJHFDSKJHFKDJSHJDFSK;ljsfljlfsljsflsfhslsfjk',
-        },
-      ],
-    },
-  ];
+  categories: any;
   panelOpenState = false;
   note: string;
   title: string;
-  category: any;
+  categoryId: number;
 
   constructor(
     private categoryService: CategoryService,
-    private auth: AuthService
+    private topicService: TopicService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.category = this.categoryService
-      .getCategory(2)
-      .subscribe((category) => console.log(category));
+    this.getCategories();
   }
 
-  // TODO
+  private getCategories(): void {
+    this.categoryService
+      .getCategories()
+      .subscribe((value) => (this.categories = value));
+  }
+
   addNewCategory(): void {
-    console.log(this.auth.getAccessToken());
-    this.categoryService.createCategory({
-      favorite: true,
-      note: 'shfkshfk',
-      name: 'shfkshfk',
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { type: 'category' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.categoryService
+        .createCategory({
+          name: result || '',
+          favorite: false,
+          note: '',
+        })
+        .subscribe((res) => {
+          if (res) {
+            this.getCategories();
+          }
+        });
     });
   }
-  // TODO
+
   addNewTopic(): void {
-    this.categoryService.createCategory({
-      favorite: true,
-      note: 'shfkshfk',
-      name: 'shfkshfk',
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { type: 'topic' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.topicService
+        .createTopic({
+          category_id: this.categoryId,
+          name: result || '',
+          favorite: false,
+          note: '',
+        })
+        .subscribe((res) => {
+          if (res) {
+            this.getCategories();
+          }
+        });
     });
   }
 }

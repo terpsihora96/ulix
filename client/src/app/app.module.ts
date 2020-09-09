@@ -46,6 +46,7 @@ import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './services/guards/auth-guard.guard';
 import { LoggedinGuard } from './services/guards/loggedin.guard';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoggedinGuard } from './services/guards/loggedin.guard';
     RegisterComponent,
     AccountComponent,
     NotFoundComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
