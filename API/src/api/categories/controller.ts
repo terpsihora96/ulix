@@ -3,7 +3,7 @@ import { Boom } from '@hapi/boom';
 import * as types from './types';
 import { RequestExt } from '../../services/types';
 import * as moment from 'moment-timezone';
-
+import { verifyJWT } from '../../services/auth';
 export class CategoryController {
   constructor() {}
 
@@ -69,17 +69,23 @@ export class CategoryController {
 
   async addCategory(request: RequestExt, h: ResponseToolkit): Promise<ResponseObject | Boom> {
     try {
-      const payload = request.payload as any;
-      const categoryId = await request.db().one(
-        `INSERT INTO categories (favorite, note, name, last_update) 
-          VALUES ($<favorite>, $<note>, $<name>, $<now>)
+      const user = (await verifyJWT(request.headers.authorization.split(' ')[1])) as any;
+      if (user) {
+        const userId = user.id;
+        const payload = request.payload as any;
+        const categoryId = await request.db().one(
+          `INSERT INTO categories (favorite, note, name, last_update, user_id) 
+          VALUES ($<favorite>, $<note>, $<name>, $<now>, $<id>)
           RETURNING id`,
-        {
-          ...payload,
-          now: moment().toISOString(),
-        }
-      );
-      return h.response(categoryId).code(201);
+          {
+            ...payload,
+            id: userId,
+            now: moment().toISOString(),
+          }
+        );
+        return h.response(categoryId).code(201);
+      }
+      return request.badRequest();
     } catch (err) {
       console.error(err);
       return request.internal();
