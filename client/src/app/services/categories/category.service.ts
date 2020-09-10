@@ -51,9 +51,8 @@ export class CategoryService {
   }
 
   public updateCategory(data: Category): Observable<{ id: number }> {
-    return this.http.put<{ id: number }>(
-      `${this.categoriesUrl}/${data.id}`,
-      data
-    );
+    const id = data.id;
+    delete data.id;
+    return this.http.put<{ id: number }>(`${this.categoriesUrl}/${id}`, data);
   }
 }
