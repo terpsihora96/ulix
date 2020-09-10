@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { UserService } from '../services/users/user.service';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-account',
@@ -16,7 +17,11 @@ export class AccountComponent implements OnInit {
   newPassword: string;
   confirmNewPassword: string;
 
-  constructor(private location: Location, private user: UserService) {
+  constructor(
+    private location: Location,
+    private user: UserService,
+    private session: SessionService
+  ) {
     this.email = this.user.getEmail();
     this.firstName = this.user.getFirstName();
     this.lastName = this.user.getLastName();
@@ -59,5 +64,6 @@ export class AccountComponent implements OnInit {
 
   deleteAllData(): void {
     this.user.deleteAllData();
+    this.session.clearSessionStorage();
   }
 }

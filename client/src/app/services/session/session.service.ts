@@ -37,4 +37,8 @@ export class SessionService {
   public getTopicId(): string {
     return sessionStorage.getItem('topic_id');
   }
+
+  public clearSessionStorage(): void {
+    sessionStorage.clear();
+  }
 }
