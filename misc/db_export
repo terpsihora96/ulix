@@ -1,0 +1,106 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.4 (Ubuntu 12.4-1.pgdg18.04+1)
+-- Dumped by pg_dump version 12.4 (Ubuntu 12.4-1.pgdg18.04+1)
+
+-- Started on 2020-09-10 17:12:50 CEST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2983 (class 0 OID 24642)
+-- Dependencies: 205
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.categories (id, favorite, created_at, last_update, note, name, user_id) FROM stdin;
+7	f	2020-09-09 14:45:17.814667	2020-09-09 12:45:17.807		e	\N
+12	f	2020-09-09 15:09:53.947617	2020-09-09 13:09:53.927		e	\N
+13	f	2020-09-09 15:10:05.856506	2020-09-09 13:10:05.855		e	\N
+14	f	2020-09-09 15:10:44.60919	2020-09-09 13:10:44.591		w	\N
+28	f	2020-09-10 16:37:53.850095	2020-09-10 14:37:53.844		Random thoughts	12
+29	f	2020-09-10 16:44:51.158266	2020-09-10 14:44:51.152		Books	12
+30	f	2020-09-10 16:52:55.658354	2020-09-10 14:52:55.652		Movies	12
+\.
+
+
+--
+-- TOC entry 2985 (class 0 OID 24671)
+-- Dependencies: 207
+-- Data for Name: topics; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.topics (id, category_id, note, name, created_at, last_update, favorite) FROM stdin;
+11	28	Most probably everything would be better if we would invest all we have in education - not just putting more kids to school, insisting on finishing at least undergraduate studies, but investing in adults as well.\nHow can we do that?\n- More workshops\n- More gouvernement (French)  payed classes for those who want to change their professions or just stay curious\n- Force people to be curious\n- Force people not to think that they are old\n...\n\n\n	Education	2020-09-10 16:38:03.885319	2020-09-10 14:44:11.332	f
+14	29		Why We Sleep	2020-09-10 16:47:51.371256	\N	f
+15	29	  Ponekad malo tesko za citanje.\n\n\nVazan je redosled po kom se navode stvari.\nPovezano sa knjigom "Influence: Science and Practice" - prvo kazi ono sto je skuplje da bi prodao jeftinije i obrnuto.\n	Thinking Fast and Slow	2020-09-10 16:50:42.99291	2020-09-10 15:00:23.433	f
+12	28	 Always finish a class with small, easy exercise for all students so that they leave the class fulfilled, with a sense that they accomplished something this class\n\nGive them the opportunity to imagine, to project themselves in a reality in which they fill good -> associate that particular language with joy\n\nAlways keep goals visual and precise - pass the exam, be the best in the class etc.\n\nKeep it interactive, involve them all the time -> no long explanations\n\nEncourage them to talk even if they make lots of mistakes\n\nUse lots of images in the class -> explain words with images\n\nRepeat the same word using different mediums and make them do the same\n\nMake the language accessible -> don’t explain grammar like grammar if someone is not that good in grammar in general\n\nTeach them the vocabulary that you remark they use often -> even if someone needs some word that is above their level/not priority,  teach it to them -> they’ll be able to construct sentences easier since they are still trying to use the same vocabulary in their native language\n\nOrganize the whole journey as a huge story with situations and words repeating (How exactly?)\n\nStart a class with a joke, make them laugh, make them come into the joyful world of learning a language \n\nKeep them happy\n\nNotice when they are tired, pause, talk casually for a bit -> don’t play videos if they are tired; make them imagine, relax and talk when they are tired; make them focus for a bit with repetitive exercises 	About teaching foreign languages\n	2020-09-10 16:44:31.468891	2020-09-10 15:00:41.524	f
+18	29	  Ponovo tip iz Intela. Tako sam ih istraumirali Japanci sa citavom pricom oko memorije.	High Ouput Management	2020-09-10 17:02:08.360451	2020-09-10 15:02:48.413	f
+17	30	Neverovatna atmosfera.\nIgra senkama, svetloscu, bojama i dimom.\nI sam reziser priznaje da se snimalo u toku snimanja - nije imao pojma bas da ce tako ispasti.\nInteresantno.\n	In the Mood for Love\n	2020-09-10 16:54:48.965952	2020-09-10 15:04:45.711	f
+16	30	Psihicke bolesti na zabavan nacin.	Blue Velvet\n	2020-09-10 16:54:35.729806	2020-09-10 15:06:37.731	f
+13	29	Psihicke bolesti na zabavan nacin.	Talking to Strangers 	2020-09-10 16:45:03.230947	2020-09-10 15:06:47.065	f
+\.
+
+
+--
+-- TOC entry 2981 (class 0 OID 24623)
+-- Dependencies: 203
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, firstname, lastname, email, created_at, last_update, light_mode, password, password_forgotten, refresh_token, last_login) FROM stdin;
+1	Tijana	Jevtic	tijana@gmail.com	2020-08-16 19:22:22.142431	\N	t	1234	f	refresh26token	\N
+4	Tijana3	Jevtic	tijana3@sparkmate.co	2020-09-08 16:01:42.899012	2020-09-08 14:01:42.883	t	$2b$05$2Dk5r.1zSMOsuwJg.ncsHetcxr5DfbURf/iMltpBDHjOib.MTf/NG	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiQlpXbVlEU1FhRG5LdVhSZkFDU29VOSIsImlhdCI6MTU5OTU3MzcwMiwiZXhwIjoxNjAwMTc4NTAyLCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.RVrBofqtUH-WMS8pL4_0ktTZzplpA94Rybregv3NV9A	2020-09-08 14:01:42.883
+5	Ivan	M	ivan@tijanaco	2020-09-08 16:02:23.695988	2020-09-08 14:02:23.689	t	$2b$05$EsxAEAosN9htWu9.8vhM0e6tCCqcs4mpDX5UU3QmDnqQEJ8Vv2gtm	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiRHhVcjlYY29kcG9lMzg2TVVKQVlBcSIsImlhdCI6MTU5OTU3Mzc0MywiZXhwIjoxNjAwMTc4NTQzLCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.nfk3edPFmSi18jaUkGIzdP2wcawUwEksTy2ht-RoQrM	2020-09-08 14:02:23.689
+6	Ivan	Milisic	ivan@ivan.co	2020-09-08 16:04:09.821054	2020-09-08 14:04:09.814	t	$2b$05$dOICyB0Kr2oE7JCNC9VV9eEFq.BMUHrO8OQIrIWHzRBdXdXaimF/m	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiU0RySEw0VGJhaHdGQXFwcVQyeGJWRSIsImlhdCI6MTU5OTU3Mzg0OSwiZXhwIjoxNjAwMTc4NjQ5LCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.dGwTI7sNwslEd1EViXON3IPr5dwDsSiIMUOinKzGTYo	2020-09-08 14:04:09.814
+7	Ivan	M	ivan@t.co	2020-09-08 16:04:49.536683	2020-09-08 14:04:49.529	t	$2b$05$gxS9Slbkf6uJpJ6OY8sLGOtKE7PYpFxKWB5.boHEPFh.jsA24fH7G	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiTTVZb3dMd3RoU3BTdk13UHRRYzNBMSIsImlhdCI6MTU5OTU3Mzg4OSwiZXhwIjoxNjAwMTc4Njg5LCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.bZHsxEpWqSX5lxvAhhm9QZNG_GDPJnZWiS5OevWQBRA	2020-09-08 14:04:49.529
+9	TijanaTijana	Tijana	tijana@tijana.co	2020-09-08 16:07:13.526687	2020-09-08 14:07:13.517	t	$2b$05$x7vPXkvAVnGadVbkJjYdx.z4MfeDPDj1V90gLxZKgu4kkLFXoIS82	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiU3lwVTdvYUVLOUJCTnBkMm5DZkRiNiIsImlhdCI6MTU5OTU3NDA0NiwiZXhwIjoxNjAwMTc4ODQ2LCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.O8hEdZF-WzLrFV1McI8lLg-pgZ6zjKZGORR4ypgyUho	2020-09-08 14:07:26.391
+3	Tijana2	Jevtic	tijana2@sparkmate.co	2020-09-08 15:58:55.135463	2020-09-08 13:58:55.129	t	$2b$05$0giZS0lYsRCzUxFhZgp4xuXD3KPKJROckUuECQSqzjkkDGOmWl1Li	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiNGtISDJWc2RBcE5VbzhIRlZqV1VXdyIsImlhdCI6MTU5OTU3MzUzNSwiZXhwIjoxNjAwMTc4MzM1LCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.A43ZaKtryT2UjQQGPr3ko3jRqB_v5cxc5ZwzsstpIWw	2020-09-08 13:58:55.129
+12	Tijana	Jevtic	tijana@sparkmate.co	2020-09-09 15:51:22.288413	2020-09-10 11:37:10.906	t	$2b$05$64VJh93baaeSy8kXyDYbpuqtls02pnjID8JbPoQX5INFE6D3UKc/q	f	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiM0RibnVSQUQyQWZuMkh6Y29XZGZUYSIsImlhdCI6MTU5OTc0ODY2MSwiZXhwIjoxNjAwMzUzNDYxLCJpc3MiOiJVbGl4IEFQSSBUaWphbmEgSmV2dGljIn0.gIXrgocVzHoko8PIeAdswr6aJooMIuRRWrK-q0vZYpA	2020-09-10 14:37:41.869
+\.
+
+
+--
+-- TOC entry 2994 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.categories_id_seq', 30, true);
+
+
+--
+-- TOC entry 2995 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: topics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.topics_id_seq', 18, true);
+
+
+--
+-- TOC entry 2996 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 13, true);
+
+
+-- Completed on 2020-09-10 17:12:50 CEST
+
+--
+-- PostgreSQL database dump complete
+--
+

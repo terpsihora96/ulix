@@ -41,8 +41,8 @@ export class MainComponent implements OnInit {
     this.session.setNote(div.innerText);
     this.topicService
       .updateTopic({
-        id: +this.topicId,
-        category_id: +this.categoryId,
+        id: this.topicId,
+        category_id: this.categoryId,
         note: div.innerText,
         name: this.title,
         favorite: false,
@@ -54,8 +54,8 @@ export class MainComponent implements OnInit {
     this.session.setTitle(header.innerText);
     this.topicService
       .updateTopic({
-        id: +this.topicId,
-        category_id: +this.categoryId,
+        id: this.topicId,
+        category_id: this.categoryId,
         note: this.note,
         name: header.innerText,
         favorite: false,
@@ -93,7 +93,7 @@ export class MainComponent implements OnInit {
         .createCategory({
           name: result || 'Untitled',
           favorite: false,
-          note: '',
+          note: '...',
         })
         .subscribe((res) => {
           if (res) {
@@ -114,7 +114,7 @@ export class MainComponent implements OnInit {
           category_id: this.categoryId,
           name: result || 'New topic',
           favorite: false,
-          note: '',
+          note: '...',
         })
         .subscribe((res) => {
           if (res) {
