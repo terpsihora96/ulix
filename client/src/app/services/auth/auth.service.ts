@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import * as moment from 'moment';
 import { Tokens, TokenData } from './types';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,15 @@ import { Tokens, TokenData } from './types';
 export class AuthService {
   private readonly apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient, private location: Location) {}
+  constructor(
+    private http: HttpClient,
+    private location: Location,
+    private session: SessionService
+  ) {}
 
   public logout(): void {
     localStorage.clear();
+    this.session.clearSessionStorage();
     this.location.go('/login');
     location.reload();
   }
