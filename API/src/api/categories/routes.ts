@@ -34,7 +34,6 @@ export const categoryRoutes = (server: Server) => {
             categoryId: Joi.number().integer(),
           }),
         },
-        auth: false,
         response: {
           sample: 80,
           schema: models.getCategorySchema,
@@ -79,7 +78,6 @@ export const categoryRoutes = (server: Server) => {
         handler: categoryController.addCategory,
         tags: ['api', 'categories'],
         description: 'Add new category.',
-        auth: false,
         response: {
           status: {
             201: Joi.object().keys({

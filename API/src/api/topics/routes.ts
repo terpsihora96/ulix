@@ -20,7 +20,6 @@ export const topicRoutes = (server: Server) => {
             topicId: Joi.number().integer(),
           }),
         },
-        auth: false,
         response: {
           sample: 80,
           schema: models.getTopicSchema,
@@ -50,7 +49,6 @@ export const topicRoutes = (server: Server) => {
         handler: topicController.addTopic,
         tags: ['api', 'topics'],
         description: 'Add new topic.',
-        auth: false,
         response: {
           status: {
             201: Joi.object().keys({

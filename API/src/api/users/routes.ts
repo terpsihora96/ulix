@@ -20,7 +20,6 @@ export const userRoutes = (server: Server) => {
             userId: Joi.number().integer(),
           }),
         },
-        auth: false,
         response: {
           sample: 80,
           schema: models.getUserSchema,
