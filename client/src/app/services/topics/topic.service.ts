@@ -47,4 +47,12 @@ export class TopicService {
   public deleteTopic(id: number): Observable<{ id: number }> {
     return this.http.delete<{ id: number }>(`${this.topicsUrl}/${id}`);
   }
+  public updateTopic(data: Topic): Observable<{ id: number }> {
+    const id = data.id;
+    delete data.id;
+    if (data.note === '') {
+      data.note = '...';
+    }
+    return this.http.put<{ id: number }>(`${this.topicsUrl}/${id}`, data);
+  }
 }

@@ -147,6 +147,7 @@ export class UserService {
               this.auth.getRefreshToken()
             );
             this.auth.saveUser(body.access_token);
+            location.reload();
             return true;
           } else {
             return false;
@@ -156,7 +157,6 @@ export class UserService {
           return of(false);
         })
       );
-    location.reload();
     return observable.toPromise();
   }
 

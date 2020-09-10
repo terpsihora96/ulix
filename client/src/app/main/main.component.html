@@ -3,13 +3,13 @@
     <mat-accordion>
       <div *ngFor="let category of categories">
         <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header (click)="categoryId = category.id">
+          <mat-expansion-panel-header (click)="setCategoryId(category.id)">
             <mat-panel-title>
               {{ category.name }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="topics" *ngFor="let topic of category.topics">
-            <p (click)="title = topic.name; note = topic.note">
+            <p (click)="setTopic(topic.name, topic.note, topic.id)">
               {{ topic.name }}
             </p>
           </div>
@@ -31,10 +31,21 @@
     </mat-accordion>
   </div>
   <div class="main">
-    <h1 class="header" contenteditable="true">
+    <h1
+      class="header"
+      contenteditable="true"
+      #titleBind
+      (focusout)="onTitleChange(titleBind)"
+    >
       <b>{{ title }}</b>
     </h1>
-    <div class="note" contenteditable="true">
+    <div
+      class="note"
+      contenteditable="true"
+      data-text="Let your thoughts flourish here..."
+      #noteBind
+      (focusout)="onNoteChange(noteBind)"
+    >
       {{ note }}
     </div>
   </div>

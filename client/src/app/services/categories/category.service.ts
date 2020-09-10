@@ -49,4 +49,11 @@ export class CategoryService {
   public deleteCategory(id: number): Observable<{ id: number }> {
     return this.http.delete<{ id: number }>(`${this.categoriesUrl}/${id}`);
   }
+
+  public updateCategory(data: Category): Observable<{ id: number }> {
+    return this.http.put<{ id: number }>(
+      `${this.categoriesUrl}/${data.id}`,
+      data
+    );
+  }
 }
