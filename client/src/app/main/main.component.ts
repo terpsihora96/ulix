@@ -39,7 +39,6 @@ export class MainComponent implements OnInit {
 
   public onNoteChange(div: any): void {
     this.session.setNote(div.innerText);
-    this.note = div.innerText;
     this.topicService
       .updateTopic({
         id: +this.topicId,
@@ -53,7 +52,6 @@ export class MainComponent implements OnInit {
 
   public onTitleChange(header: any): void {
     this.session.setTitle(header.innerText);
-    this.title = header.innerText;
     this.topicService
       .updateTopic({
         id: +this.topicId,
