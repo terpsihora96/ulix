@@ -37,7 +37,7 @@
     "joi": "^17.2.0",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "pg-promise": "^10.5.8",
     "prettier": "^2.0.5",
     "snyk": "^1.374.0",
